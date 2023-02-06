@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import shortid from 'shortid';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
@@ -11,10 +10,10 @@ import { IconButton } from 'components/IconButton/IconButton';
 import noContactImg from '../../images/no-contacts.png';
 import { ReactComponent as AddIcon } from '../../icons/addContact.svg';
 import { ReactComponent as CloseIcon } from '../../icons/close.svg';
-import { addContact, removeContact, setFilter } from 'redux/actions';
-// import initialContacts from '../../contacts.json';
-// import defaultUserImg from '../../images/default.png';
-import { getFilteredContacts, getFilter } from 'redux/selectors';
+import { addContact, removeContact } from 'redux/contacts/contacts-actions';
+import { setFilter } from 'redux/filter/filter-actions';
+import { getFilteredContacts } from 'redux/contacts/contacts-selectors';
+import { getFilter } from 'redux/filter/filter-selectors';
 
 export const MyContacts = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +21,10 @@ export const MyContacts = () => {
   const filter = useSelector(getFilter);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const onAddContact = payload => {
     const action = addContact(payload);
@@ -39,6 +42,9 @@ export const MyContacts = () => {
   };
   const onSetFilter = ({ target }) => {
     dispatch(setFilter(target.value));
+  };
+  const onClearBtnClick = () => {
+    dispatch(setFilter(''));
   };
   return (
     <>
@@ -58,23 +64,20 @@ export const MyContacts = () => {
         </Modal>
       )}
       <Title text="Phonebook" />
-      <Filter
-        value={filter}
-        onChange={onSetFilter}
-        //   onClear={onClearBtnClick}
-      />
+      <Filter value={filter} onChange={onSetFilter} onClear={onClearBtnClick} />
       <Title text="Contacts" />
-      {contacts[0] ? (
+      {contacts.length > 0 && (
         <ContactList contacts={contacts} removeContact={onRemoveContact} />
-      ) : (
+      )}
+      {filter === '' && !contacts[0] && (
         <Notification
           text="There is no contact yet, you can add a new one!"
           imgPath={noContactImg}
         />
       )}
-      {/* {!filteredContacts[0] && contacts[0] && (
+      {filter && !contacts[0] && (
         <Notification text="No contact found" imgPath={noContactImg} />
-      )} */}
+      )}
     </>
   );
 };
@@ -88,84 +91,3 @@ export const MyContacts = () => {
 //   useEffect(() => {
 //     window.localStorage.setItem('contacts', JSON.stringify(contacts));
 //   }, [contacts]);
-
-//   const toggleModal = () => {
-//     setShowModal(prevState => !prevState);
-//   };
-
-//   const addContact = (name, number, avatar) => {
-//     const contact = {
-//       id: shortid.generate(),
-//       name,
-//       number,
-//       avatar: avatar ?? defaultUserImg,
-//     };
-//     setContacts(prevState => [...prevState, contact]);
-//     toggleModal();
-//   };
-
-//   const deleteContact = contactId => {
-//     if (window.confirm('Are you sure you want to delete this contact?')) {
-//       setContacts(prevState =>
-//         prevState.filter(prevState => prevState.id !== contactId)
-//       );
-//     }
-//     return;
-//   };
-
-//   const onClearBtnClick = () => {
-//     setFilter('');
-//   };
-
-//   const changeFilter = e => {
-//     setFilter(e.currentTarget.value);
-//   };
-
-//   const getFilteredContacts = () => {
-//     if (filter) {
-//       const normalizedFilter = filter.toLowerCase();
-//       return contacts.filter(contact =>
-//         contact.name.toLowerCase().includes(normalizedFilter)
-//       );
-//     }
-//     return contacts;
-//   };
-
-//   const filteredContacts = getFilteredContacts();
-
-//  <IconButton onClick={toggleModal} type="button" aria-label="Add contact">
-//         <AddIcon width="40" height="40" fill="#29668b" />
-//       </IconButton>
-//       {showModal && (
-//         <Modal onClose={toggleModal}>
-//           <ContactForm actualContacts={contacts} onSubmit={addContact} />
-//           <IconButton
-//             onClick={toggleModal}
-//             type="button"
-//             aria-label="Close modal window"
-//           >
-//             <CloseIcon width="20" height="20" fill="#29668b" />
-//           </IconButton>
-//         </Modal>
-//       )}
-//       <Title text="Phonebook" />
-//       <Filter
-//         value={filter}
-//         onChange={changeFilter}
-//         onClear={onClearBtnClick}
-//       />
-//       <Title text="Contacts" />
-//       {contacts[0] ? (
-//         <ContactList
-//           contacts={filteredContacts}
-//           onDeleteContact={deleteContact}
-//         />
-//       ) : (
-//         <Notification
-//           text="There is no contact yet, you can add a new one!"
-//           imgPath={noContactImg}
-//         />
-//       )}
-//       {!filteredContacts[0] && contacts[0] && (
-//         <Notification text="No contact found" imgPath={noContactImg} />
-//       )}

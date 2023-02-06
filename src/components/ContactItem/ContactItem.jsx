@@ -5,7 +5,13 @@ import defaultUserImg from '../../images/default.png';
 import { ReactComponent as PhoneIcon } from '../../icons/phone.svg';
 import { ReactComponent as StarIcon } from '../../icons/star.svg';
 
-export const ContactItem = ({ name, avatar, number, favorite, removeBook }) => {
+export const ContactItem = ({
+  name,
+  avatar,
+  number,
+  favorite,
+  removeContact,
+}) => {
   console.log(name);
   return (
     <StyledItem>
@@ -16,7 +22,12 @@ export const ContactItem = ({ name, avatar, number, favorite, removeBook }) => {
         <PhoneIcon width="20" height="20" fill="#29668b"></PhoneIcon>
         {number}
       </Box>
-      <Button type="button" text="Delete" active onClick={removeBook}></Button>
+      <Button
+        type="button"
+        text="Delete"
+        active
+        onClick={removeContact}
+      ></Button>
     </StyledItem>
   );
 };

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Box } from './FavoriteContactsPage.styled';
-import { getFavoriteContacts } from 'redux/selectors';
+import { getFavoriteContacts } from 'redux/contacts/contacts-selectors';
 // import { useState, useEffect } from 'react';
 // import { useSearchParams } from 'react-router-dom';
 // import { useSelector } from 'react-redux/es/exports';
@@ -17,12 +17,12 @@ const FavoriteContactsPage = () => {
   );
 };
 
-// MoviesPage.defaultProps = {
-//   movies: [],
-// };
+FavoriteContactsPage.defaultProps = {
+  movies: [],
+};
 
-// MoviesPage.propTypes = {
-//   movies: PropTypes.array.isRequired,
-// };
+FavoriteContactsPage.propTypes = {
+  contacts: PropTypes.array.isRequired,
+};
 
 export default FavoriteContactsPage;
