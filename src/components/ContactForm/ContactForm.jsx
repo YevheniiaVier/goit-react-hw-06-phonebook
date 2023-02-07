@@ -5,7 +5,7 @@ import { useState } from 'react';
 import shortid from 'shortid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Checkbox } from './Checkbox/Checkbox';
 import { Button } from './Button';
 import {
   StyledForm,
@@ -19,6 +19,7 @@ const notify = text =>
 
 export const ContactForm = ({ actualContacts, onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
+  const [isChecked, setIsChecked] = useState(false);
 
   const nameInputId = shortid.generate();
   const telInputId = shortid.generate();
@@ -94,15 +95,21 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
           Add path to photo if you like
         </StyledLabel>
       </Box>
-      <Box>
+      {/* <Box>
+        <StyledLabel htmlFor={imgInputId}>Add to favorite</StyledLabel>
         <StyledInput
           type="checkbox"
           name="favorite"
           id={favInputId}
           onChange={handleChange}
         />
-        <StyledLabel htmlFor={imgInputId}></StyledLabel>
-      </Box>
+      </Box> */}
+      <Checkbox
+        label="Add to favorite"
+        name="favorite"
+        onChange={handleChange}
+        isChecked={isChecked}
+      />
       <Button text="Add contact" type="submit" active={false} />
       <ToastContainer autoClose={2000} />
     </StyledForm>

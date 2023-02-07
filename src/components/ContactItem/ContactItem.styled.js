@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledItem = styled.li`
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   color: ${p => p.theme.colors.primary};

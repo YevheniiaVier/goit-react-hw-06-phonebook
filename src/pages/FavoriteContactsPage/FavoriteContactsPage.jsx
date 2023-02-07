@@ -7,12 +7,23 @@ import { getFavoriteContacts } from 'redux/contacts/contacts-selectors';
 // import { useSelector } from 'react-redux/es/exports';
 import { ContactList } from 'components/ContactList/ContactList';
 // import { MyContacts } from 'components/MyContacts/MyContacts';
+import { removeContact } from 'redux/contacts/contacts-actions';
+import { useDispatch } from 'react-redux';
+
 const FavoriteContactsPage = () => {
   const contacts = useSelector(getFavoriteContacts);
 
+  const dispatch = useDispatch();
+
+  const onRemoveContact = payload => {
+    if (window.confirm('Are you sure you want to delete this contact?')) {
+      dispatch(removeContact(payload));
+    }
+  };
+
   return (
     <Box>
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} removeContact={onRemoveContact} />
     </Box>
   );
 };
