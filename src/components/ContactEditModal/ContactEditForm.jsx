@@ -59,7 +59,7 @@ export const ContactEditForm = ({
           id={nameInputId}
           placeholder=" "
         />
-        <StyledLabel htmlFor={nameInputId}></StyledLabel>
+        <StyledLabel htmlFor={nameInputId}>Name</StyledLabel>
       </Box>
       <Box>
         <StyledInput
@@ -73,7 +73,7 @@ export const ContactEditForm = ({
           id={telInputId}
           placeholder=" "
         />
-        <StyledLabel htmlFor={telInputId}></StyledLabel>
+        <StyledLabel htmlFor={telInputId}>Number</StyledLabel>
       </Box>
       <Box>
         <StyledInput
@@ -84,7 +84,9 @@ export const ContactEditForm = ({
           placeholder=" "
           onChange={handleChange}
         />
-        <StyledLabel htmlFor={imgInputId}></StyledLabel>
+        <StyledLabel htmlFor={imgInputId}>
+          {contact.avatar ? 'Photo' : 'Add path to photo if you like'}
+        </StyledLabel>
       </Box>
 
       <Checkbox

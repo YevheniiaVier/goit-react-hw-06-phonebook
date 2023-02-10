@@ -5,14 +5,21 @@ import { Modal } from 'components/Modal/Modal';
 import { IconButton } from 'components/IconButton/IconButton';
 import { ReactComponent as CloseIcon } from '../../icons/close.svg';
 import { ContactEditForm } from 'components/ContactEditModal/ContactEditForm';
-
-import { Button } from 'components/ContactForm/Button';
-import { StyledItem, ContactImg, Box } from './ContactItem.styled';
+import {
+  StyledItem,
+  ContactImg,
+  Box,
+  ButtonBox,
+  TelBox,
+  NameBox,
+} from './ContactItem.styled';
 import defaultUserImg from '../../images/default.png';
 import { ReactComponent as PhoneIcon } from '../../icons/phone.svg';
 import { ReactComponent as StarIcon } from '../../icons/star.svg';
 import { ReactComponent as EditIcon } from '../../icons/edit.svg';
 import { editContact } from 'redux/contacts/contacts-slice';
+import { ReactComponent as DeleteIcon } from '../../icons/delete.svg';
+import { ItemIconButton } from './IconButton';
 
 export const ContactItem = ({
   id,
@@ -68,22 +75,27 @@ export const ContactItem = ({
             alt={name}
           />
           {name}
-          <PhoneIcon width="20" height="20" fill="#29668b"></PhoneIcon>
-          {number}
+          <TelBox>
+            <PhoneIcon width="20" height="20" fill="#29668b"></PhoneIcon>
+            {number}
+          </TelBox>
         </Box>
-        <Button
-          onClick={toggleEditModal}
-          type="button"
-          aria-label="Edit contact"
-        >
-          <EditIcon width="20" height="20" fill="#29668b" />
-        </Button>
-        <Button
-          type="button"
-          text="Delete"
-          active
-          onClick={removeContact}
-        ></Button>
+        <ButtonBox>
+          <ItemIconButton
+            onClick={toggleEditModal}
+            type="button"
+            aria-label="Edit contact"
+          >
+            <EditIcon width="30" height="30" fill="#38D2D2" />
+          </ItemIconButton>
+          <ItemIconButton
+            onClick={removeContact}
+            type="button"
+            aria-label="Remove contact"
+          >
+            <DeleteIcon width="33" height="33" fill="#38D2D2" />
+          </ItemIconButton>
+        </ButtonBox>
       </StyledItem>
     </>
   );

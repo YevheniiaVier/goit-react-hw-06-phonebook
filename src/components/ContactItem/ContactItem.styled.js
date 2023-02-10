@@ -4,6 +4,7 @@ export const StyledItem = styled.li`
   display: flex;
   position: relative;
   justify-content: space-between;
+  gap: 15px;
   align-items: center;
   color: ${p => p.theme.colors.primary};
   padding: ${p => p.theme.space[3]}px;
@@ -11,13 +12,6 @@ export const StyledItem = styled.li`
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   & button {
-    width: 80px;
-    height: 40px;
-    padding-top: ${p => p.theme.space[3]}px;
-    padding-bottom: ${p => p.theme.space[3]}px;
-    padding-left: ${p => p.theme.space[4]}px;
-    padding-right: ${p => p.theme.space[4]}px;
-    color: ${p => p.theme.colors.text};
   }
 `;
 
@@ -38,4 +32,27 @@ export const Box = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: ${p => p.theme.space[3]}px;
+  // flex-grow: 1;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  gap: ${p => p.theme.space[3]}px;
+`;
+
+export const TelBox = styled.div`
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  gap: ${p => p.theme.space[3]}px;
+  align-self: right;
+`;
+
+export const NameBox = styled.div`
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  // gap: ${p => p.theme.space[3]}px;
 `;

@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const StyledIconBtn = styled.button`
   // margin-bottom: ${p => p.theme.space[0]}px;
-  // padding: ${p => p.theme.space[0]}px;
-  border-radius: ${p => p.theme.radii.round};
+  padding: ${p => p.theme.space[0]}px;
+  // border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
-  // padding: ${p => p.theme.space[0]}px;
+  padding: ${p => p.theme.space[0]}px;
   // color: ${p => p.theme.colors.accent};
-  background-color: ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.transparent};
   // background-image: radial-gradient(
   //     93% 87% at 87% 89%,
   //     rgba(0, 0, 0, 0.23) 0%,
@@ -25,9 +25,9 @@ export const StyledIconBtn = styled.button`
   //   inset 0px -8px 36px rgba(0, 0, 0, 0.3),
   //   inset 0px 1px 5px rgba(255, 255, 255, 0.6), 2px 19px 31px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
+  // width: 30px;
+  // height: 30px;
+  display: flex;
   align-items: center;
   justify-content: center;
   // position: absolute;

@@ -23,7 +23,6 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
   const nameInputId = shortid.generate();
   const telInputId = shortid.generate();
   const imgInputId = shortid.generate();
-  // const favInputId = shortid.generate();
 
   const handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
@@ -99,6 +98,7 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
         label="Add to favorite"
         name="favorite"
         onChange={handleChange}
+        isChecked={state.favorite}
       />
       <Button text="Add contact" type="submit" active={false} />
       <ToastContainer autoClose={2000} />

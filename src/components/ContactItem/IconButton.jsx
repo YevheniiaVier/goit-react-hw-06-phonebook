@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { StyledIconBtn } from './IconButton.styled';
 
-export const IconButton = ({ children, type, onClick, ...allyProps }) => {
+export const ItemIconButton = ({ children, type, onClick, ...allyProps }) => {
   return (
     <StyledIconBtn type={type} onClick={onClick} {...allyProps}>
       {children}
@@ -10,12 +10,12 @@ export const IconButton = ({ children, type, onClick, ...allyProps }) => {
   );
 };
 
-IconButton.defaultProps = {
+ItemIconButton.defaultProps = {
   onClick: () => null,
   children: null,
 };
 
-IconButton.propTypes = {
+ItemIconButton.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   'aria-label': PropTypes.string.isRequired,
