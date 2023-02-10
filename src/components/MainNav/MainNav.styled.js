@@ -12,16 +12,8 @@ export const Box = styled.div`
   left: 0;
   width: 100%;
   background: #efefbb; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #d4d3dd,
-    #efefbb
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #d4d3dd,
-    #efefbb
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #d4d3dd, #efefbb);
+  background: linear-gradient(to right, #d4d3dd, #efefbb);
 `;
 
 export const List = styled.ul`

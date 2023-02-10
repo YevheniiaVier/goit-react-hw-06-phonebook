@@ -5,5 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 900px;
+  // min-width: 600px;
+  // max-width: 600px;
 `;

@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { Box } from './FavoriteContactsPage.styled';
 import { getFavoriteContacts } from 'redux/contacts/contacts-selectors';
 import { ContactList } from 'components/ContactList/ContactList';
-import { removeContact } from 'redux/contacts/contacts-actions';
+import { removeContact } from 'redux/contacts/contacts-slice';
 import { useDispatch } from 'react-redux';
 
 const FavoriteContactsPage = () => {
   const contacts = useSelector(getFavoriteContacts);
-
+  console.log(contacts);
   const dispatch = useDispatch();
 
   const onRemoveContact = payload => {
@@ -25,7 +25,7 @@ const FavoriteContactsPage = () => {
 };
 
 FavoriteContactsPage.defaultProps = {
-  movies: [],
+  contacts: [],
 };
 
 FavoriteContactsPage.propTypes = {

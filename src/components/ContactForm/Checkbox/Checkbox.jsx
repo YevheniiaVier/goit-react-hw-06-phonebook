@@ -9,7 +9,12 @@ export const Checkbox = ({ label, onChange, name, isChecked }) => {
   return (
     <CheckBox className="checkbox-wrapper">
       <CheckboxLabel>
-        <FavInput type="checkbox" name={name} onChange={onChange} />
+        <FavInput
+          type="checkbox"
+          name={name}
+          checked={isChecked}
+          onChange={onChange}
+        />
         <CheckboxText>{label}</CheckboxText>
       </CheckboxLabel>
     </CheckBox>

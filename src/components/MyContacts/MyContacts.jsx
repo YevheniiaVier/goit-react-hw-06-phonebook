@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -10,8 +10,8 @@ import { IconButton } from 'components/IconButton/IconButton';
 import noContactImg from '../../images/no-contacts.png';
 import { ReactComponent as AddIcon } from '../../icons/addContact.svg';
 import { ReactComponent as CloseIcon } from '../../icons/close.svg';
-import { addContact, removeContact } from 'redux/contacts/contacts-actions';
-import { setFilter } from 'redux/filter/filter-actions';
+import { addContact } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
 import { getFilteredContacts } from 'redux/contacts/contacts-selectors';
 import { getFilter } from 'redux/filter/filter-selectors';
 
@@ -22,30 +22,23 @@ export const MyContacts = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
   const onAddContact = payload => {
     const action = addContact(payload);
     dispatch(action);
     toggleModal();
   };
 
-  const onRemoveContact = payload => {
-    if (window.confirm('Are you sure you want to delete this contact?')) {
-      dispatch(removeContact(payload));
-    }
-  };
   const toggleModal = () => {
     setShowModal(prevState => !prevState);
   };
+
   const onSetFilter = ({ target }) => {
     dispatch(setFilter(target.value));
   };
   const onClearBtnClick = () => {
     dispatch(setFilter(''));
   };
+
   return (
     <>
       <IconButton onClick={toggleModal} type="button" aria-label="Add contact">
@@ -66,9 +59,7 @@ export const MyContacts = () => {
       <Title text="Phonebook" />
       <Filter value={filter} onChange={onSetFilter} onClear={onClearBtnClick} />
       <Title text="Contacts" />
-      {contacts.length > 0 && (
-        <ContactList contacts={contacts} removeContact={onRemoveContact} />
-      )}
+      {contacts.length > 0 && <ContactList contacts={contacts} />}
       {filter === '' && !contacts[0] && (
         <Notification
           text="There is no contact yet, you can add a new one!"
@@ -81,13 +72,3 @@ export const MyContacts = () => {
     </>
   );
 };
-
-//   const [contacts, setContacts] = useState(
-//     () => JSON.parse(window.localStorage.getItem('contacts')) ?? initialContacts
-//   );
-//   const [filter, setFilter] = useState('');
-//   const [showModal, setShowModal] = useState(false);
-
-//   useEffect(() => {
-//     window.localStorage.setItem('contacts', JSON.stringify(contacts));
-//   }, [contacts]);

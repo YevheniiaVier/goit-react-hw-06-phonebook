@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledContacts = styled.ul`
-  width: 600px;
+  max-width: 700px;
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.l};
   margin: ${p => p.theme.space[0]}px;

@@ -1,4 +1,5 @@
 export const getContacts = store => store.contacts;
+
 export const getFavoriteContacts = store => {
   const favoriteContacts = store.contacts.filter(({ favorite }) => favorite);
   return favoriteContacts;

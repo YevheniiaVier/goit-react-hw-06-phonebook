@@ -1,34 +1,38 @@
-import { initialState } from './initialState';
-
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import shortid from 'shortid';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Checkbox } from './Checkbox/Checkbox';
-import { Button } from './Button';
+
+import { ModalButton } from './Button';
+import { Checkbox } from 'components/ContactForm/Checkbox/Checkbox';
 import {
   StyledForm,
   StyledInput,
   StyledLabel,
   Box,
-} from './ContactForm.styled';
+} from './ContactEditForm.styled';
 
-const notify = text =>
-  toast.error(text, { theme: 'colored', pauseOnHover: true });
-
-export const ContactForm = ({ actualContacts, onSubmit }) => {
-  const [state, setState] = useState({ ...initialState });
+export const ContactEditForm = ({
+  contactId,
+  name,
+  avatar,
+  number,
+  favorite,
+  onSubmit,
+}) => {
+  const initialState = { id: contactId, name, avatar, number, favorite };
+  const [contact, setContact] = useState({
+    ...initialState,
+  });
 
   const nameInputId = shortid.generate();
   const telInputId = shortid.generate();
   const imgInputId = shortid.generate();
-  // const favInputId = shortid.generate();
 
   const handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
     const newValue = type === 'checkbox' ? checked : value;
-    setState(prevState => ({
+    setContact(prevState => ({
       ...prevState,
       [name]: newValue,
     }));
@@ -36,22 +40,8 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { elements } = e.currentTarget;
-
-    if (actualContacts.find(contact => elements.name.value === contact.name)) {
-      return notify(`${elements.name.value} is already in contacts`);
-    }
-
-    const foundNumber = actualContacts.find(
-      contact => elements.number.value === contact.number
-    );
-    if (foundNumber) {
-      return notify(
-        `${elements.number.value} is already belong to ${foundNumber.name}`
-      );
-    }
-    onSubmit({ ...state });
-    setState({ ...initialState });
+    onSubmit({ ...contact });
+    setContact({ ...initialState });
   };
 
   return (
@@ -59,18 +49,21 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
       <Box>
         <StyledInput
           type="text"
+          value={contact.name}
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={handleChange}
+          onSubmit={onSubmit}
           id={nameInputId}
           placeholder=" "
         />
-        <StyledLabel htmlFor={nameInputId}>Name*</StyledLabel>
+        <StyledLabel htmlFor={nameInputId}></StyledLabel>
       </Box>
       <Box>
         <StyledInput
+          value={contact.number}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -80,33 +73,33 @@ export const ContactForm = ({ actualContacts, onSubmit }) => {
           id={telInputId}
           placeholder=" "
         />
-        <StyledLabel htmlFor={telInputId}>Number*</StyledLabel>
+        <StyledLabel htmlFor={telInputId}></StyledLabel>
       </Box>
       <Box>
         <StyledInput
+          value={contact.avatar ?? ''}
           type="url"
           name="avatar"
           id={imgInputId}
           placeholder=" "
           onChange={handleChange}
         />
-        <StyledLabel htmlFor={imgInputId}>
-          Add path to photo if you like
-        </StyledLabel>
+        <StyledLabel htmlFor={imgInputId}></StyledLabel>
       </Box>
 
       <Checkbox
-        label="Add to favorite"
+        value={contact.favorite}
+        label={contact.favorite ? 'Remove from favorite' : 'Add to favorite'}
         name="favorite"
         onChange={handleChange}
+        isChecked={contact.favorite}
       />
-      <Button text="Add contact" type="submit" active={false} />
-      <ToastContainer autoClose={2000} />
+      <ModalButton text="Edit contact" type="submit" />
     </StyledForm>
   );
 };
 
-ContactForm.propTypes = {
+ContactEditForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   actualContacts: PropTypes.arrayOf(
     PropTypes.shape({
