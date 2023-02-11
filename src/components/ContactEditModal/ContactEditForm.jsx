@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import shortid from 'shortid';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { ModalButton } from './Button';
 import { Checkbox } from 'components/ContactForm/Checkbox/Checkbox';

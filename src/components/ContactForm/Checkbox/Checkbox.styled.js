@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-export const FavInput = styled.input``;
 export const CheckboxLabel = styled.label`
   color: ${p => p.theme.colors.accentDark};
   font-weight: ${p => p.theme.fontWeights.bold};

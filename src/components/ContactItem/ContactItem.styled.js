@@ -32,27 +32,17 @@ export const Box = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: ${p => p.theme.space[3]}px;
-  // flex-grow: 1;
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
-  // align-items: center;
-  // justify-content: space-between;
+
   gap: ${p => p.theme.space[3]}px;
 `;
 
 export const TelBox = styled.div`
   display: flex;
   align-items: center;
-  // justify-content: space-between;
   gap: ${p => p.theme.space[3]}px;
   align-self: right;
-`;
-
-export const NameBox = styled.div`
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // gap: ${p => p.theme.space[3]}px;
 `;

@@ -2,7 +2,6 @@ import {
   HiddenCheckbox,
   CheckboxLabel,
   CheckboxText,
-  FavInput,
   CheckBox,
   Icon,
   StyledCheckbox,

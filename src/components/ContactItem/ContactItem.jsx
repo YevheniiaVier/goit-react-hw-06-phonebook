@@ -11,7 +11,6 @@ import {
   Box,
   ButtonBox,
   TelBox,
-  NameBox,
 } from './ContactItem.styled';
 import defaultUserImg from '../../images/default.png';
 import { ReactComponent as PhoneIcon } from '../../icons/phone.svg';
