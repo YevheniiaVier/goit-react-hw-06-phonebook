@@ -30,14 +30,14 @@ export const Link = styled(NavLink)`
   border-radius: 10rem;
   padding-top: ${p => p.theme.space[4]}px;
   padding-bottom: ${p => p.theme.space[4]}px;
-  padding-left: ${p => p.theme.space[6]}px;
-  padding-right: ${p => p.theme.space[6]}px;
+  padding-left: ${p => p.theme.space[4]}px;
+  padding-right: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.grey};
   color: ${p => p.theme.colors.primary};
   font-size: ${p => p.theme.fontSizes.m};
 
   font-weight: ${p => p.theme.fontWeights.bolder};
-  transition: all 300ms 100ms;
+  transition: all 200ms 100ms;
   &.active {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
       0px 2px 1px rgba(0, 0, 0, 0.2);
